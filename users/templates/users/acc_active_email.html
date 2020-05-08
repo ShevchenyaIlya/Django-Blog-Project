@@ -1,0 +1,13 @@
+<div class="col-md-4">
+  <div class="content-section">
+    <h1>Important</h1>
+    <h1>Hi {{ user.username }}</h1>
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-light">We’re so glad you're making progress on our website.</li>
+      <li class="list-group-item list-group-item-light">You register on our website at {{ time }} and using email {{ user.email }}</li>
+      <li class="list-group-item list-group-item-light">Please click on the link to confirm your registration,{{activate_url}}</li>
+      <li class="list-group-item list-group-item-light">If you think, it's not you, then just ignore this email.</li>
+    </ul>
+    <a href="{{ activate_url }}"><button class="btn btn-outline-danger" type="submit">Yes, verified</button></a>
+  </div>
+</div>
