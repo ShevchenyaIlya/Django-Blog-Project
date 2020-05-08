@@ -1,0 +1,5 @@
+[run]
+omit = */migrations/*
+       */manage.py
+       */django_project/wsgi.py
+       */django_project/asgi.py
