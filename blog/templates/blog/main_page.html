@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css'%}">
+    {% if title %}
+        <title>TDGame - {{title}}</title>
+    {% else %}
+        <title>TDGame</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'main-page' %}">TDGame</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'main-page' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'profile' %}">
+                  <img class="rounded-circle user_article-img" src="{{ user.profile.image.url }}">
+                </a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 id="left">Добро пожаловать на официальный сайт игры "Tower Defense"</h2>
+                <p id="right">
+                    Created by Ilya Shevchenya
+                </p>
+              </div>
+          </article>
+
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Ощути незабываемые впечатления в бесплатной игре.</h2>
+                <h2 class="self-align">Опробуйте все доступные карты.</h2>
+                <img class="image-size-big  " src="../../static/hole_backgrounds.png" alt="Game details">
+              </div>
+          </article>
+
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Игровые меню. Переключение между картами.</h2>
+                <img class="image-size-big  " src="../../static/1.png" alt="Game details">
+                <h2></h2>
+                <img class="image-size-big  " src="../../static/2.png" alt="Game details">
+                <h2></h2>
+                <img class="image-size-big  " src="../../static/3.png" alt="Game details">
+              </div>
+          </article>
+
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Широкое разнообразие мобов. Возможность придумать свою победную стратегию.</h2>
+                <img class="image-size-big  " src="../../static/4.png" alt="Game details">
+                <h2></h2>
+                <img class="image-size-big  " src="../../static/5.png" alt="Game details">
+              </div>
+          </article>
+
+           <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Таблица результов и разнообразные мелодии на картах.</h2>
+                <img class="image-size-big  " src="../../static/6.png" alt="Game details">
+              </div>
+          </article>
+
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Понравилась игра и хотите оставить отзыв? Возникли проблемы или выскачили баги?</h2>
+                <a class="text-align mr-2" href="{% url 'blog-home'%}"><p >Переходи на страницу блога.</p></a>
+              </div>
+          </article>
+
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Следить за последними обновлениями и исправлениями можно по ссылке</h2>
+                <a class="text-align" href="https://github.com/ShevchenyaIlya/Tower-Defence-Game"><p>https://github.com/ShevchenyaIlya/Tower-Defence-Game</p></a>
+                <a class="text-align" href="https://github.com/ShevchenyaIlya/Django-Blog-Project"><p>https://github.com/ShevchenyaIlya/Django-Blog-Project</p></a>
+              </div>
+          </article>
+
+          <article class="media content-section">
+              <div class="media-body">
+                <h2 class="self-align">Загрузить последнюю доступную версию можно прямо сейчас</h2>
+                <a class="center-button" href="{% url 'download'%}">
+                    <button class="btn btn-primary btn-lg" type="submit">Download</button>
+                </a>
+              </div>
+          </article>
+        </div>
+        {% block right_panel %}{% endblock %}
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
