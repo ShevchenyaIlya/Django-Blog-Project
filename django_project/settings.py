@@ -190,9 +190,9 @@ LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-# STATICFILES_DIRS = (
-#     os.path.join(PROJECT_ROOT, 'staticfiles'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'staticfiles'),
+)
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 GRAPPELLI_SWITCH_USER = True
