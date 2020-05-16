@@ -1,7 +1,13 @@
+import mimetypes
+import os
+
+from django.http import HttpResponse, Http404, FileResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+from django_project import settings
 from .models import Post
 import logging
 
@@ -13,6 +19,14 @@ def home(request):
         'posts': Post.objects.all(),
     }
     return render(request, 'blog/home.html', context)
+
+
+def main_page(request):
+    return render(request, 'blog/main_page.html')
+
+
+def show_diagram(request):
+    return render(request, 'blog/class_diagram.html')
 
 
 class PostListView(ListView):
@@ -32,6 +46,10 @@ class UserPostListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
+
+
+def download(request):
+    return FileResponse(open('/home/shevchenya/PycharmProjects/django_project/media/Tower Defence.zip', 'rb'))
 
 
 class PostDetailView(DetailView):
